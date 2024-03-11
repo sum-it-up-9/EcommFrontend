@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const url='http://localhost:8000';
-
+const url='https://ecommercebackend-7wg2.onrender.com';
+// const url='http://localhost:8000';
 export const authenticateSignup = async (data)=>{
     try{
         console.log(data);

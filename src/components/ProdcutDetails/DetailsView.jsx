@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
+import { toast } from "react-toastify";
 
 const StyledBadge = styled(Badge)`
     margin-right: 10px;
@@ -79,12 +80,13 @@ const DetailsView = () => {
   const handleAddToCart=(productData)=>{
     console.log(productData);
     dispatch(AddToCart(productData));
-    navigate('/cart');
+    toast.success('Item added to Cart successfully!')
+    //navigate('/cart');
   }
 
   const postOrder=async(productData)=>{
     try{
-      const url='http://localhost:8000/order';
+      const url='https://ecommercebackend-7wg2.onrender.com/order';
       console.log(productData,'ds');
       const res=await axios.post(url,{...productData,email:userDetails.email});
       console.log(res);
@@ -105,7 +107,7 @@ const DetailsView = () => {
 			order_id: data.id,
 			handler: async (response) => {
 				try {
-					const verifyUrl = "http://localhost:8000/verify";
+					const verifyUrl = "https://ecommercebackend-7wg2.onrender.com/verify";
 					const { data } = await axios.post(verifyUrl, response);
 					console.log(data,'payment info');
           if(data.message==='Payment verified successfully'){
@@ -130,7 +132,7 @@ const DetailsView = () => {
         setOpen(true);
         return;
       }
-			const orderUrl = "http://localhost:8000/orders";
+			const orderUrl = "https://ecommercebackend-7wg2.onrender.com/orders";
 			const { data } = await axios.post(orderUrl, { amount: productData?.price?.cost });
 			console.log(data);
 			initPayment(data.data,productData);

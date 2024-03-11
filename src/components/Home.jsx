@@ -88,9 +88,9 @@ const Home = () =>{
             <Container>
                 {
                     navData.map(data=>(
-                        <ItemConatiner onClick={()=>handleNavigate()}>
+                        <ItemConatiner sx={{ '&:hover': { color: '#fb641b' } }} onClick={()=>handleNavigate()}>
                             <img src={data.url} alt="nav" style={{width:64}} />
-                            <Typography style={{fontSize:14,fontWeight:600}}>{data.text}</Typography>
+                            <Typography style={{fontSize:14,fontWeight:600}} >{data.text}</Typography>
                         </ItemConatiner>
                     ))
                     

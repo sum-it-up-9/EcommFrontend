@@ -45,7 +45,7 @@ const CartItem = ({item}) => {
   return (
     <>
         <ProductImage key={item._id}>
-            <img src={item.detailUrl} style={{height:'110px', width:'110px'}} alt="productimg" />
+            <img src={item.url} style={{height:'110px', width:'110px'}} alt="productimg" />
         </ProductImage>
         <ProductSpecs>
             <Typography style={{fontWeight:'bold'}}>{item.title.longTitle}</Typography>

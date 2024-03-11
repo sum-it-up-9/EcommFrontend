@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const BoxStyled=styled(Box)`
     margin-left:12%;
+   
 `;
 const Searchbox=styled(Box)`
     background:#fff;
@@ -55,6 +56,12 @@ const ButtonStyled=styled(Button)`
     border-radius:2px;
     box-shadow:none;
     font-weight:600;
+
+    &:hover {
+       
+        color:white;
+        background-color:#fb541b;
+    }
 `;
 const ListWrapper = styled(List)`
   position: absolute;
@@ -95,7 +102,10 @@ const Header = () => {
         <AppBar>
             <Toolbar>
                 <BoxStyled>
-                    <img src={url} alt="FlipkartLogo" style={ {width: 75}} />
+                    <Link to="/">
+                        <img src={url} alt="FlipkartLogo" style={ {width: 75}} />
+                    </Link>
+                   
                 </BoxStyled>
                 <Searchbox>
                     <SearchIconBox onClick={(e)=>fetchSearchResults(e)}><SearchIcon/></SearchIconBox>  
@@ -129,13 +139,21 @@ const Header = () => {
                     }
                    
                     <Link to={'/monitors'} style={{ textDecoration: 'none', color: 'inherit',marginRight:'5px' }}>
-                        <Typography style={{marginTop:5}}>Products</Typography>
+                        <Typography   sx={{
+        '&:hover': {
+          color: 'black',
+        },
+      }} style={{marginTop:5}}>Products</Typography>
                     </Link>
 
                     <Link to={'/cart'} style={{ textDecoration: 'none', color: 'inherit' }}>
                         <IconContainer>
                             <ShoppingCartIcon />
-                            <Typography>Cart</Typography>
+                            <Typography sx={{
+        '&:hover': {
+          color: '#00035c',
+        },
+      }} >Cart</Typography>
                             <Badge style={{ marginLeft: 20 }} badgeContent={cartItems?.length} color="secondary"></Badge>
                         </IconContainer>
                     </Link>

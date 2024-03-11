@@ -3,7 +3,7 @@ import { Dialog,Box, Button,TextField,Typography } from "@mui/material"
 import { useState, useContext } from "react";
 import { authenticateSignup, authenticateLogin } from "../service/api";
 import { DataContext } from "../context/DataProvider";
-
+import {  toast } from 'react-toastify';
 
 const Container=styled(Box)`
     height:60vh;
@@ -12,7 +12,7 @@ const Container=styled(Box)`
 `;
 
 const Image=styled(Box)`
-    height:82%;
+    height:85.2%;
     background:#2874f0 url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png) center 85% no-repeat;
     width:40%;
     padding:45px 35px;
@@ -119,10 +119,13 @@ const LoginDialog = () => {
 
 
   const SignUpUser=async ()=>{
-    console.log(signup);
+    //console.log(signup);
     let res=await authenticateSignup(signup);
+    toast.error('Enter correct credentials');
     if(!res) return;
     handleClose();
+
+   toast.success('SignUp Successfull');
     setAccount(res?.data?.Userdata?.firstName) ; 
    
    // console.log(account);
@@ -131,14 +134,18 @@ const LoginDialog = () => {
   const LoginUser=async ()=>{
     let res=await authenticateLogin(loginval);
     if(res.status===200){
+      toast.success('Login Successfull');
       const accessToken = res.data.accessToken; // Assuming the access token is returned from the API response
       localStorage.setItem('accessToken', accessToken); // Store the access token in localStorage
       setAccount(res?.data?.Userdata?.firstName);
       setUserDeatils(res?.data?.Userdata);
       handleClose();
-      console.log('userDetails',res?.data?.Userdata);
+      //console.log('userDetails',res?.data?.Userdata);
+     
+
     }
     else{
+      toast.error('Login Failed');
       setError(true);
     }
    
@@ -146,16 +153,18 @@ const LoginDialog = () => {
 
   const LoginAsGuest = async () =>{
     let res=await authenticateLogin({email:'sumitadsul9@gmail.com',password:'3232ewef'});
-    console.log(res,'r');
+    // console.log(res,'r');
     if(res.status===200){
+      toast.success('Login Successfull');
       const accessToken = res.data.accessToken; // Assuming the access token is returned from the API response
       localStorage.setItem('accessToken', accessToken); // Store the access token in localStorage
       setAccount(res?.data?.Userdata?.firstName);
       setUserDeatils(res?.data?.Userdata);
       handleClose();
-      console.log('userDetails',res?.data?.Userdata);
+      // console.log('userDetails',res?.data?.Userdata);
     }
     else{
+      toast.error('Login Failed');
       setError(true);
     }
   }
@@ -183,10 +192,10 @@ const LoginDialog = () => {
                 </LoginContainer>
               :
               <LoginContainer>
-                <TextField variant="standard" label="Enter Email" name="email" onChange={(e)=>OnInputChange(e)}></TextField>
-                <TextField variant="standard" label="Enter First Name" name="firstName" onChange={(e)=>OnInputChange(e)}></TextField>
-                <TextField variant="standard" label="Enter Last Name" name="lastName" onChange={(e)=>OnInputChange(e)}></TextField>
-                <TextField variant="standard" label="Enter Password" name="password" onChange={(e)=>OnInputChange(e)}></TextField>
+                <TextField required variant="standard" label="Enter Email" name="email" onChange={(e)=>OnInputChange(e)}></TextField>
+                <TextField required variant="standard" label="Enter First Name" name="firstName" onChange={(e)=>OnInputChange(e)}></TextField>
+                <TextField  required variant="standard" label="Enter Last Name" name="lastName" onChange={(e)=>OnInputChange(e)}></TextField>
+                <TextField required variant="standard" label="Enter Password" name="password" onChange={(e)=>OnInputChange(e)}></TextField>
                 <Text>By continuing, you agree to Terms of Use and Privacy policy</Text>
                 
                 <LoginBtn onClick={()=>SignUpUser()}>SignUp</LoginBtn>    

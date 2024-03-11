@@ -62,7 +62,7 @@ const Slide = ({productData}) => {
     <Conatiner>
         <Component>
             <DealText>Deal of the Day</DealText>
-            <Button onClick={()=>handleNavigate()} variant="contained" color="primary">View All</Button>
+            <Button   sx={{'&:hover': {backgroundColor: '#fb641b',},}} onClick={()=>handleNavigate()} variant="contained" color="primary">View All</Button>
         </Component>
         <Divider/>
         <Carousel responsive={responsive} infinite={true}   swipeable={false}

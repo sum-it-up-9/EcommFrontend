@@ -57,7 +57,7 @@ const Cart = () => {
   
       const postOrder=async()=>{
         try{
-          const url='http://localhost:8000/order';
+          const url='https://ecommercebackend-7wg2.onrender.com/order';
          // console.log(productData,'ds');
           const res=await axios.post(url,{...cartItems,email:userDetails.email});
           //console.log(res);
@@ -80,7 +80,7 @@ const Cart = () => {
           order_id: data.id,
           handler: async (response) => {
             try {
-              const verifyUrl = "http://localhost:8000/verify";
+              const verifyUrl = "https://ecommercebackend-7wg2.onrender.com/verify";
               const { data } = await axios.post(verifyUrl, response);
               console.log(data,'payment info');
               if(data.message==='Payment verified successfully'){
@@ -105,7 +105,7 @@ const Cart = () => {
             setOpen(true);
             return;
           }
-          const orderUrl = "http://localhost:8000/orders";
+          const orderUrl = "https://ecommercebackend-7wg2.onrender.com/orders";
           const ans=cartItems.reduce((acc,item)=>{ return acc+ (item.price.cost)},0);
           console.log(ans,'ans');
           const { data } = await axios.post(orderUrl, { amount: cartItems.reduce((acc,item)=>{ return acc+ (item?.price?.cost * (item.count))},0) });

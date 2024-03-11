@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-const url='http://localhost:8000';
+const url='https://ecommercebackend-7wg2.onrender.com';
 
 //action
 export const fetchProduct=createAsyncThunk('fetchProduct',async () =>{
