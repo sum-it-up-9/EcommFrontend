@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { DataContext } from '../../context/DataProvider';
 import { clearCart } from '../../Redux/CartSlice';
-
+import {  toast } from 'react-toastify';
 const LeftContainer=styled(Box)`
     display:flex;
     flex-wrap:no-wrap;
@@ -102,7 +102,10 @@ const Cart = () => {
       const buyNow=async function(){
         try {
           if(!account){
-            setOpen(true);
+            toast.error('To purchase items, please log in.');
+
+
+            //setOpen(true);
             return;
           }
           const orderUrl = "https://ecommercebackend-7wg2.onrender.com/orders";

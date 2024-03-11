@@ -129,7 +129,8 @@ const DetailsView = () => {
   const buyNow=async function(productData){
     try {
       if(!account){
-        setOpen(true);
+        toast.error('To purchase items, please log in.');
+
         return;
       }
 			const orderUrl = "https://ecommercebackend-7wg2.onrender.com/orders";

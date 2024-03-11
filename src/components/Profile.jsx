@@ -3,10 +3,12 @@ import { useContext, useState } from "react";
 import { clearCart } from "../Redux/CartSlice";
 import { useDispatch } from "react-redux";
 import { DataContext } from "../context/DataProvider";
-
+import {useNavigate} from 'react-router-dom';
+import {  toast } from 'react-toastify';
 
 const Profile = ({account}) => {
     const dispatch=useDispatch();
+    const navigate=useNavigate();
      const [open,setOpen]=useState(false);
      const {setUserDeatils,setAccount}=useContext(DataContext); 
      const handleClick=(event)=>{
@@ -19,6 +21,8 @@ const Profile = ({account}) => {
         setUserDeatils({});
         dispatch(clearCart());
         localStorage.removeItem('accessToken');
+        toast.success('Logout sucess!');
+        navigate('/');
     }
 
   return (
